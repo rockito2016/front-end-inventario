@@ -9,8 +9,6 @@ import { VentaComponent } from '../../pages/venta/venta.component';
 import { BalanceVentaComponent } from '../../pages/venta/balance-venta/balance-venta.component';
 import { HistorialVentaComponent } from '../../pages/venta/historial-venta/historial-venta.component';
 import { ProductoComponent } from '../../pages/producto/producto.component';
-import { ProveedorComponent } from '../../pages/pedido/proveedor/proveedor.component';
-import { TransportadorComponent } from '../../pages/pedido/transportador/transportador.component';
 import { ProductDetailComponent } from '../../pages/producto/product-detail/product-detail.component';
 import { ProductFormComponent } from '../../pages/producto/product-form/product-form.component';
 import { ProductListComponent } from '../../pages/producto/product-list/product-list.component';
@@ -19,14 +17,7 @@ export const AdminLayoutRouter: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'stock', component: StockComponent },
   {
-    path: 'pedido', component: PedidoComponent, children: [
-      {
-        path: 'proveedor', component: ProveedorComponent
-      },
-      {
-        path: 'transportador', component: TransportadorComponent
-      }
-    ]
+    path: 'pedido', component: PedidoComponent
   },
   {
     path: 'compra', component: CompraComponent, children: [
@@ -44,7 +35,7 @@ export const AdminLayoutRouter: Routes = [
         path: 'balance-venta', component: BalanceVentaComponent
       },
       {
-        path: 'historial-compra', component: HistorialVentaComponent
+        path: 'historial-venta', component: HistorialVentaComponent
       }
     ]
   },
