@@ -13,6 +13,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 @NgModule({
@@ -30,7 +31,9 @@ import { ComponentsModule } from './components/components.module';
     AppRoutingModule
 
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
