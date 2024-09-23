@@ -20,6 +20,7 @@ import { StockComponent } from '../../pages/stock/stock.component';
 import { VentaComponent } from '../../pages/venta/venta.component';
 import { BalanceVentaComponent } from '../../pages/venta/balance-venta/balance-venta.component';
 import { HistorialVentaComponent } from '../../pages/venta/historial-venta/historial-venta.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { HistorialVentaComponent } from '../../pages/venta/historial-venta/histo
     CommonModule,
     RouterModule.forChild(AdminLayoutRouter),
     FormsModule,
+    NgbModule,
     HttpClientModule
   ],
   exports: [],
