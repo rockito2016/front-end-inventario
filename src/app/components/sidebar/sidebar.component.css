@@ -1,0 +1,108 @@
+/* Estilos básicos del navbar */
+.navbar-vertical {
+  width: 250px;
+  height: 100vh;
+  transition: width 0.3s ease;
+}
+
+.navbar-vertical.collapsed {
+  width: 70px;
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #3b82f6, #1e40af);
+}
+
+.navbar-brand-img {
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.7));
+}
+
+.nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  color: #ffffff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(96, 165, 250, 0.2);
+  /* Hover background */
+  color: #60a5fa;
+  /* Primary color hover */
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: #60a5fa;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+  width: 100%;
+}
+
+/* Efectos interactivos en los íconos */
+.nav-icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover .nav-icon {
+  transform: translateY(-3px);
+  color: #60a5fa;
+}
+
+/* Submenú personalizado */
+.submenu {
+  background-color: rgba(30, 64, 175, 0.1);
+  padding-left: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.submenu .nav-link {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+}
+
+.submenu .nav-link:hover {
+  background-color: rgba(96, 165, 250, 0.2);
+}
+
+.submenu .submenu-icon {
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.submenu .nav-link:hover .submenu-icon {
+  transform: rotate(-5deg);
+}
+
+/* Colores de fondo para el estado activo */
+.nav-link.active {
+  background-color: rgba(30, 64, 175, 0.6);
+  color: #ffffff;
+}
+
+/* Transiciones suaves para el colapso del navbar */
+@media (max-width: 768px) {
+  .navbar-vertical {
+    width: 100%;
+    height: auto;
+  }
+
+  .navbar-vertical.collapsed {
+    width: 100%;
+  }
+
+  .navbar-vertical.hide {
+    display: none;
+  }
+}

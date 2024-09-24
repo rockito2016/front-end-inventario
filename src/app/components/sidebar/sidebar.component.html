@@ -1,13 +1,91 @@
 <nav
-  class="navbar navbar-vertical navbar-expand-md navbar-light bg-white"
+  class="navbar navbar-vertical bg-gradient-primary shadow-lg sticky top-0 z-50 transition-all duration-300"
   id="sidenav-main"
+  [ngClass]="{ 'w-64': !isCollapsed, 'w-20': isCollapsed }"
 >
-  <div class="container-fluid">
-    <!-- toggler for mobile -->
+  <div class="container-fluid flex flex-col items-start justify-between py-4">
+    <!-- Toggler for mobile -->
     <button
-      class="navbar-toggler"
+      class="navbar-toggler block md:hidden text-white focus:outline-none hover:text-blue-200 transition-colors duration-300"
       type="button"
       (click)="isCollapsed = !isCollapsed"
-    ></button>
+      aria-controls="sidenav-collapse-main"
+    >
+      <i class="fas" [ngClass]="isCollapsed ? 'fa-bars' : 'fa-times'"></i>
+    </button>
+
+    <!-- Brand -->
+    <a
+      class="navbar-brand flex items-center text-xl font-bold text-white hover:text-blue-200 transition-all duration-300"
+      routerLinkActive="active"
+      [routerLink]="['/dashboard']"
+    >
+      <img
+        src="logo.png"
+        class="navbar-brand-img h-10 w-auto mr-3 transition-transform duration-300 hover:scale-110"
+        alt="Brand Logo"
+      />
+      <span class="brand-text" [ngClass]="{ 'hidden md:block': isCollapsed }"
+        >Distribuidora</span
+      >
+    </a>
+
+    <!-- Collapse -->
+    <div
+      class="navbar-collapse flex flex-col w-full mt-4"
+      [ngClass]="{ 'space-y-4': !isCollapsed, 'space-y-0': isCollapsed }"
+    >
+      <!-- Navigation -->
+      <ul class="navbar-nav w-full">
+        <li *ngFor="let menuItem of menuItems" class="nav-item group relative">
+          <a
+            routerLinkActive="active"
+            [routerLink]="[menuItem.path]"
+            class="nav-link text-white hover:text-blue-200 flex items-center px-4 py-3 rounded-md transition-all duration-300"
+            (click)="
+              menuItem.children ? (menuItem.isOpen = !menuItem.isOpen) : null
+            "
+          >
+            <i class="nav-icon {{ menuItem.icon }} text-lg"></i>
+            <span
+              class="nav-text ml-4"
+              [ngClass]="{ 'hidden md:block': isCollapsed }"
+              >{{ menuItem.title }}</span
+            >
+            <i
+              *ngIf="menuItem.children"
+              class="submenu-icon ml-auto fas transition-transform duration-300"
+              [ngClass]="{
+                'fa-chevron-down': !menuItem.isOpen,
+                'fa-chevron-up rotate-180': menuItem.isOpen
+              }"
+            ></i>
+          </a>
+
+          <!-- Submenu -->
+          <ul
+            *ngIf="menuItem.children && menuItem.isOpen"
+            class="submenu bg-opacity-10 rounded-md p-2 mt-1 transition-all duration-300"
+            [ngClass]="{ 'space-y-1': !isCollapsed }"
+          >
+            <li *ngFor="let child of menuItem.children" class="nav-item">
+              <a
+                routerLinkActive="active"
+                [routerLink]="[menuItem.path, child.path]"
+                class="nav-link flex items-center space-x-2 text-white hover:text-blue-200 px-3 py-2 rounded-md transition-all duration-300"
+              >
+                <i class="submenu-icon {{ child.icon }} text-sm"></i>
+                <span
+                  class="submenu-text"
+                  [ngClass]="{ 'hidden md:block': isCollapsed }"
+                >
+                  {{ child.title }}
+                </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
